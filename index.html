@@ -81,10 +81,9 @@
               var params = url.searchParams;
               var port = params.get("port") || "9090";
               var host = params.get("host") || "localhost";
-              var ssl  = params.has("ssl") ? params.get("ssl") : (window.location.protocol == "https");
+              var ssl  = params.has("ssl") ? params.get("ssl") : (window.location.protocol === "https:");
               var server = (ssl ? "wss://" : "ws://") + host + ":" + port;
-              console.log(server);
-              console.log(window.location.protocol);
+
               //ROS initialization
               var ros = new ROSLIB.Ros({url: server});
 
