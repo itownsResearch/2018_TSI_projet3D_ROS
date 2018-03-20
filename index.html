@@ -77,10 +77,14 @@
               view.mainLoop.gfxEngine.renderer.setClearColor(0x555555);
               controls = new itowns.FlyControls(view, { focusOnClick: true });
 
+              var url = new URL(window.location.href);
+              var port = url.searchParams.get("port") || "9090";
+              var host = url.searchParams.get("host") || "localhost";
+              var ssl  = url.searchParams.get("ssl")  || false;
+              var server = (ssl ? "wss://" : "ws://") + host + ":" + port;
+              console.log(server);
               //ROS initialization
-              var ros = new ROSLIB.Ros({
-                        url : 'wss://localhost:9090/'
-                      });
+              var ros = new ROSLIB.Ros({url: server});
 
               ros.on('connection', function() {
                   console.log('Connected to websocket server.');
