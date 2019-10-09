@@ -92,6 +92,8 @@
               });
 
               ros.on('error', function(error) {
+                  alert('This demo failed to connect to a roslib wss server at "'+server+
+                        '". Make sure you have such a server running.');
                   console.log('Error connecting to websocket server: ', error);
               });
 
